@@ -1,11 +1,17 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('main');
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true
+    })
+  )
 
   const config = new DocumentBuilder()
     .setTitle('esf-app-social-backend')

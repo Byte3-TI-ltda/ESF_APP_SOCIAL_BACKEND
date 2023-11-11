@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { getEnvPath } from './common/helpers/env.helper';
 import dbConfig from './common/configs/db.config';
 import { GrupoModule } from './modules/grupo/grupo.module';
+import { UserModule } from './modules/user/user.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
 
@@ -15,6 +16,7 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
       isGlobal: true,
       load: [dbConfig],
     }),
+    UserModule,
     GrupoModule,
   ],
   controllers: [AppController],
